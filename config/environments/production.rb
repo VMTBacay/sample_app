@@ -67,14 +67,18 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  ActionMailer::Base.smtp_settings = {
-    address: "smtp.gmail.com",
+
+  host = 'https://2b5dc7a4a6274f278b1692a3ec80061c.vfs.cloud9.us-east-2.amazonaws.com' # Don't use this literally; use your local dev host instead
+  # Use this on the cloud IDE.
+  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
+  # Use this if developing on localhost.
+  # config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
     port: 587,
     authentication: :plain,
-    user_name: "ynsmicroblog@gmail.com",
-    password: "microbloG0",
-    enable_starttls_auto: true
+    user_name: 'ynsmicroblog@gmail.com',
+    password: 'microbloG0'
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
