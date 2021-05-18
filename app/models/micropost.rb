@@ -5,6 +5,7 @@ class Micropost < ApplicationRecord
                     foreign_key: "parent_id"
   has_many :reposts
   has_many :comments
+  has_many :likes
   has_one_attached :image
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true

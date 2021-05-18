@@ -27,9 +27,13 @@
       <span id="comment_count-<%= micropost.id %>">
         <%= pluralize(micropost.comments.count, 'comment') %>
       </span>
+      <span id="like_count-<%= micropost.id %>">
+        <%= pluralize(micropost.likes.count, 'like') %>
+      </span>
       <%= link_to "Quote", quote_micropost_path(id: micropost.id) if logged_in? %>
       <%= render 'microposts/repost_form', micropost: micropost if logged_in? %>
       <%= link_to "Comment", micropost if logged_in? %>
+      <%= render 'microposts/like_form', micropost: micropost if logged_in? %>
       <% if current_user?(micropost.user) %>
         <%= link_to "delete", micropost, method: :delete,
                                          data: { confirm: "You sure?" } %>

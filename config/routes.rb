@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'comments/create'
   root  'static_pages#home'
   get    '/help',    to: 'static_pages#help'
   get    '/about',   to: 'static_pages#about'
@@ -25,4 +24,5 @@ Rails.application.routes.draw do
   resources :relationships,       only: [:create, :destroy]
   resources :reposts,             only: [:create, :destroy]
   resources :comments,            only: [:create]
+  resources :likes,               only: [:create, :destroy]
 end

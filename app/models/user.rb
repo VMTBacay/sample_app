@@ -2,7 +2,9 @@ class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
   has_many :reposts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :reposted_microposts, through: :reposts, source: :micropost
+  has_many :liked_microposts, through: :likes, source: :micropost
   has_many :active_relationships, class_name: "Relationship",
                                   foreign_key: "follower_id",
                                   dependent: :destroy
@@ -119,6 +121,21 @@ class User < ApplicationRecord
   # Returns true if the current user has already reposted the micropost.
   def reposted?(micropost)
     reposted_microposts.include?(micropost)
+  end
+
+  # Likes a micropost.
+  def like(micropost)
+    liked_microposts << micropost
+  end
+
+  # Unlikes a micropost.
+  def unlike(micropost)
+    liked_microposts.delete(micropost)
+  end
+
+  # Returns true if the current user has already liked the micropost.
+  def liked?(micropost)
+    liked_microposts.include?(micropost)
   end
 
   private
