@@ -261,7 +261,11 @@ input {
   .gravatar {
     float: left;
     margin-right: 10px;
-    margin-top: 5px;
+  }
+  .parent_micropost {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid;
   }
 }
 
@@ -277,4 +281,8 @@ span.image {
   input {
     border: 0;
   }
+}
+
+.repost_form {
+  display: none;
 }

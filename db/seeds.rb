@@ -34,3 +34,9 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+# Make some quotes
+other_user = User.second
+for i in 1..10
+  user.microposts[i].update_attribute(:parent_id, other_user.microposts[i].id)
+end

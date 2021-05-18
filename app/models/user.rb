@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
+  has_many :reposts, dependent: :destroy
+  has_many :reposted_microposts, through: :reposts, source: :micropost
   has_many :active_relationships, class_name: "Relationship",
                                   foreign_key: "follower_id",
                                   dependent: :destroy
@@ -78,12 +80,13 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
-  # Defines a proto-feed.
-  # See "Following users" for the full implementation.
   def feed
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :user_id"
+    repost_ids = "SELECT micropost_id FROM reposts
+                  WHERE user_id IN (#{following_ids})"
     Micropost.where("user_id IN (#{following_ids})
+                     OR id IN (#{repost_ids})
                      OR user_id = :user_id", user_id: id)
   end
 
@@ -100,6 +103,21 @@ class User < ApplicationRecord
   # Returns true if the current user is following the other user.
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  # Reposts a micropost.
+  def repost(micropost)
+    reposted_microposts << micropost
+  end
+
+  # Unreposts a micropost.
+  def unrepost(micropost)
+    reposted_microposts.delete(micropost)
+  end
+
+  # Returns true if the current user has already reposted the micropost.
+  def reposted?(micropost)
+    reposted_microposts.include?(micropost)
   end
 
   private

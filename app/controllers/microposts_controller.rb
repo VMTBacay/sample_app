@@ -1,6 +1,10 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_user, only: [:new, :create, :destroy]
   before_action :correct_user, only: :destroy
+
+  def quote
+    @parent = Micropost.find(params[:id])
+  end
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -23,7 +27,7 @@ class MicropostsController < ApplicationController
   private
 
   def micropost_params
-    params.require(:micropost).permit(:content, :image)
+    params.require(:micropost).permit(:content, :image, :parent_id)
   end
 
   def correct_user
