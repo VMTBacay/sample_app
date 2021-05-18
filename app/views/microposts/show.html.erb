@@ -1,0 +1,23 @@
+<% provide(:title, 'Viewing micropost') %>
+
+<div class="microposts">
+  <%= render @micropost %>
+</div>
+<hr>
+
+<h3>Comments (<%= @comments.count %>)</h3>
+<% if @comments.any? %>
+  <ol class="comments">
+    <%= render @comments %>
+  </ol>
+  <%= will_paginate @comments %>
+<% end %>
+
+<%= form_with(model: @comment, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.hidden_field :micropost_id, value: @micropost.id %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Comment on this micropost..." %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

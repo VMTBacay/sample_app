@@ -1,1 +1,2 @@
 $("#repost_link-<%= @micropost.id %>").html("<%= escape_javascript(render('microposts/unrepost', micropost: @micropost)) %>");
+$("#repost_count-<%= @micropost.id %>").html('<%= pluralize(@micropost.rqcount, 'repost') %>');

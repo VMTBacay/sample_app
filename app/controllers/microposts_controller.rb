@@ -2,6 +2,12 @@ class MicropostsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :destroy]
   before_action :correct_user, only: :destroy
 
+  def show
+    @micropost = Micropost.find(params[:id])
+    @comment = @micropost.comments.build
+    @comments = @micropost.comments.paginate(page: params[:page])
+  end
+
   def quote
     @parent = Micropost.find(params[:id])
   end

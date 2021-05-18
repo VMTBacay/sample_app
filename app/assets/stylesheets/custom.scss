@@ -232,9 +232,9 @@ input {
   }
 }
 
-/* microposts */
+/* microposts and comments */
 
-.microposts {
+.microposts, .comments {
   list-style: none;
   padding: 0;
   li {
