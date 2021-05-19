@@ -36,9 +36,10 @@
       <%= link_to "Comment", micropost if logged_in? %>
       <%= render 'microposts/like_form', micropost: micropost if logged_in? %>
       <% if current_user?(micropost.user) %>
-        <%= link_to "delete", micropost, method: :delete,
+        <%= link_to "Delete", micropost, method: :delete,
                                          data: { confirm: "You sure?" } %>
       <% end %>
+      <%= link_to "Edit", edit_micropost_path(micropost) if current_user?(micropost.user) %>
     </span>
 <% unless defined? parent %>
   </li>
