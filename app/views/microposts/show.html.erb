@@ -1,7 +1,7 @@
 <% provide(:title, 'Viewing micropost') %>
 
 <div class="microposts">
-  <%= render @micropost %>
+  <%= render @micropost, dont_show_who_reposted: true %>
 </div>
 <hr>
 

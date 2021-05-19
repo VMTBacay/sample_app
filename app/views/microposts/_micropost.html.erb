@@ -3,18 +3,19 @@
 <% else %>
   <div class="parent_micropost">
 <% end %>
-    <% unless current_user.following?(micropost.user) or
-              current_user == micropost.user or
+    <% unless defined? dont_show_who_reposted or
+              @user.following?(micropost.user) or
+              @user == micropost.user or
               defined? parent %>
-        <%= micropost.followings_who_reposted(current_user).first.name %>
-        <%= (micropost.followings_who_reposted(current_user).count > 1 ? 'and others' : '') %>
+        <%= micropost.followings_who_reposted(@user).first.name %>
+        <%= (micropost.followings_who_reposted(@user).count > 1 ? 'and others' : '') %>
         reposted this<br><br>
     <% end %>
     <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
     <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
     <span class="content">
       <%= micropost.content %>
-      <%= image_tag micropost.display_image if micropost.image.attached? %>
+      <%= image_tag micropost.display_image, class: 'content-image' if micropost.image.attached? %>
       <% unless micropost.parent_id.nil? %>
         <%= render 'microposts/parent', micropost: micropost %>
       <% end %>
