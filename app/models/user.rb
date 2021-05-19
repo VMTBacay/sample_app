@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  acts_as_paranoid
   has_many :microposts, dependent: :destroy
   has_many :reposts, dependent: :destroy
   has_many :comments, dependent: :destroy

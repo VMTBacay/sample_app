@@ -1,4 +1,5 @@
 class Micropost < ApplicationRecord
+  acts_as_paranoid
   belongs_to :user
   belongs_to :parent, class_name: "Micropost", optional: true
   has_many :quotes, class_name: "Micropost",
