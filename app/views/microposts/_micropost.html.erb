@@ -15,7 +15,7 @@
     <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
     <span class="content">
       <%= micropost.content %>
-      <%= image_tag micropost.display_image, class: 'content-image' if micropost.image.attached? %>
+      <%= image_tag micropost.display_image, class: 'content-img' if micropost.image.attached? %>
       <% unless micropost.parent_id.nil? %>
         <%= render 'microposts/parent', micropost: micropost %>
       <% end %>
