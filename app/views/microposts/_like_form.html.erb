@@ -1,4 +1,4 @@
-<span id="like_link-<%= micropost.id %>">
+<span class="like_link-<%= micropost.id %>">
   <% if current_user.liked?(micropost) %>
     <%= render 'microposts/unlike', micropost: micropost %>
   <% else %>

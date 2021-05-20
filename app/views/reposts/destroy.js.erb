@@ -1,2 +1,2 @@
-$("#repost_link-<%= @micropost.id %>").html("<%= escape_javascript(render('microposts/repost', micropost: @micropost)) %>");
-$("#repost_count-<%= @micropost.id %>").html('<%= pluralize(@micropost.rqcount, 'repost') %>');
+$(".repost_link-<%= @micropost.id %>").html("<%= escape_javascript(render('microposts/repost', micropost: @micropost)) %>");
+$(".repost_count-<%= @micropost.id %>").html('<%= pluralize(@micropost.rqcount, 'repost') %>');

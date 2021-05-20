@@ -1,3 +1,14 @@
+<% provide(:title, 'Edit micropost') %>
+
+<h3>Edit micropost</h3>
+<% unless @micropost.parent.nil? %>
+  <div class="microposts">
+    Parent micropost:<br>
+    <%= render @micropost.parent, dont_show_who_reposted: true %>
+  </div>
+  <hr>
+<% end %>
+
 <%= form_with(model: @micropost, local: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">

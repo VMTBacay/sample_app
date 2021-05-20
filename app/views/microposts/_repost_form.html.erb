@@ -1,4 +1,4 @@
-<span id="repost_link-<%= micropost.id %>">
+<span class="repost_link-<%= micropost.id %>">
   <% if current_user.reposted?(micropost) %>
     <%= render 'microposts/unrepost', micropost: micropost %>
   <% else %>

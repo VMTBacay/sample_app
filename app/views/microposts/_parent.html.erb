@@ -1,5 +1,5 @@
 <% unless micropost.parent.nil? %>
-  <%= render micropost.parent, parent: true %>
+  <%= render micropost.parent, parent: true, dont_show_who_reposted: true %>
 <% else %>
   <div style="border: solid">This post has been deleted</div>
 <% end %>
