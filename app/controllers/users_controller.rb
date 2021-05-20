@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.image.attach(params[:user][:image])
+    @user.image.attach(params[:user][:image]) unless params[:user][:image].nil?
     if @user.update(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
