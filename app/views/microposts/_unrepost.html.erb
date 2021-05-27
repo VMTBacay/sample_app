@@ -1,1 +1,1 @@
-<%= link_to 'Unrepost', current_user.reposts.find_by(micropost_id: micropost.id), method: :delete, remote: true %>
+<%= link_to t('Unrepost'), current_user.reposts.find_by(micropost_id: micropost.id), method: :delete, remote: true %>

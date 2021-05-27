@@ -1,7 +1,7 @@
 <% provide(:title, 'Quote micropost') %>
 
 <div class="microposts">
-  Parent micropost:<br>
+  <%= t("parent_micropost") %>:<br>
   <%= render @parent, dont_show_who_reposted: true %>
 </div>
 <hr>
@@ -9,14 +9,15 @@
 <%= form_with(model: current_user.microposts.build, local: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <%= f.hidden_field :parent_id, value: @parent.id %>
+  <%= f.hidden_field :relationship_type, value: 0 %>
   <div class="field">
-    <%= f.text_area :content, placeholder: "Quote this micropost..." %>
+    <%= f.text_area :content, placeholder: t("quote_micropost") %>
   </div>
   <%= image_tag '', id: 'img_prev' %>
   <span class="image">
     <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
   </span>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <%= f.submit t("Post"), class: "btn btn-primary" %>
 <% end %>
 
 <%= javascript_pack_tag 'image_size_check' %>

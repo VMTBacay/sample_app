@@ -1,0 +1,105 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+jp:
+  hello: "Hello world"
+
+  Home: "ホーム"
+  Help: "ヘルプ"
+  Users: "ユーザ"
+  Microposts: "マイクロポスト"
+  Account: "アカウント"
+  Profile: "プロファイル"
+  Settings: "設定"
+  Logout: "ログアウト"
+  Login: "ログイン"
+
+  About: "このアプについて"
+  Contact: "ご連絡"
+  News: "ニュース"
+
+  Post: "投稿"
+  Follow: "フォロー"
+  Unfollow: "フォロー解除"
+  following: "フォロー中"
+  followers: "フォロワー"
+
+  will_paginate:
+    previous_label: "前へ"
+    next_label: "次へ"
+
+  datetime:
+    distance_in_words:
+      x_hours: "%{count}時間"
+      x_days: "%{count}日"
+      x_minutes: "%{count}分"
+      x_months: "%{count}ヶ月"
+      x_years: "%{count}年"
+      x_seconds: "%{count}秒"
+  ago: "前"
+
+  Quote: "引用リーポスト"
+  repost: "リーポスト"
+  Repost: "リーポスト"
+  Unrepost: "アンリーポスト"
+  comment: "コメント"
+  Comment: "コメント"
+  like: "いいね"
+  Like: "いいね"
+  Unlike: "わるいね"
+  Delete: "削除"
+  Edit: "編集"
+  post_is_deleted: "このマイクロポストは削除されました"
+  you_sure: "本当にいいですか？"
+
+  micropost: "マイクロポスト"
+  new_micropost: "新たなマイクロポストを．．．"
+  edit_micropost: "マイクロポストを編集"
+  comment_micropost: "このマイクロポストにコメントを．．．"
+  quote_micropost: "このマイクロポストを引用リーポスト．．．"
+  parent_micropost: "親マイクロポスト"
+
+  view_profile: "プロファイルを見る"
+  update_profile: "プロファイルを更新"
+  profile_pic: "プロファイル画像"
+  Confirmation: "確認用"
+  Save: "保存"
+
+  all_users: "すべてのユーザ"
+  all_microposts: "すべてのマイクロポスト"
+  search_users: "ユーザ検索"
+  search_microposts: "マイクロポスト検索"
+  Search: "検索"
+
+  forgot_password: "パスワードを忘れた場合"
+  reset_password: "パスワードをリセット"
+  update_password: "パスワードを更新"
+  Submit: "登録"

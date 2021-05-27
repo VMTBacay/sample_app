@@ -8,16 +8,23 @@
 <h3>Comments (<%= @comments.count %>)</h3>
 <% if @comments.any? %>
   <ol class="comments">
-    <%= render @comments %>
+    <%= render @comments, dont_show_who_reposted: true, parent: true %>
   </ol>
   <%= will_paginate @comments %>
 <% end %>
 
 <%= form_with(model: @comment, local: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <%= f.hidden_field :micropost_id, value: @micropost.id %>
+  <%= f.hidden_field :parent_id, value: @micropost.id %>
+  <%= f.hidden_field :relationship_type, value: 1 %>
   <div class="field">
-    <%= f.text_area :content, placeholder: "Comment on this micropost..." %>
+    <%= f.text_area :content, placeholder: t("comment_micropost") %>
   </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <%= image_tag '', id: 'img_prev' %>
+  <span class="image">
+    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+  </span>
+  <%= f.submit t("Post"), class: "btn btn-primary" %>
 <% end %>
+
+<%= javascript_pack_tag 'image_size_check' %>

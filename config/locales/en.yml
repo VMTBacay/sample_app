@@ -31,3 +31,38 @@
 
 en:
   hello: "Hello world"
+
+  Post: "Post"
+  Follow: "Follow"
+  Unfollow: "Unfollow"
+
+  ago: " ago"
+
+  following: "following"
+  followers: "followers"
+
+  repost: "repost"
+  comment: "comment"
+  like: "like"
+  post_is_deleted: "This post has been deleted"
+  you_sure: "You sure?"
+
+  micropost: "micropost"
+  new_micropost: "Comopse a new micropost..."
+  edit_micropost: "Edit micropost"
+  comment_micropost: "Comment on this micropost..."
+  quote_micropost: "Quote this micropost..."
+  parent_micropost: "Parent micropost"
+
+  view_profile: "view profile"
+  update_profile: "Update Profile"
+  profile_pic: "Profile Pictre"
+
+  all_users: "All users"
+  all_microposts: "All microposts"
+  search_microposts: "Search for microposts"
+  search_users: "Search for users"
+
+  forgot_password: "Forgot password?"
+  reset_password: "Reset Password"
+  update_password: "Update Password"

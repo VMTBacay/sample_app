@@ -2,10 +2,9 @@ class Micropost < ApplicationRecord
   acts_as_paranoid
   belongs_to :user
   belongs_to :parent, class_name: "Micropost", optional: true
-  has_many :quotes, class_name: "Micropost",
+  has_many :children, class_name: "Micropost",
                     foreign_key: "parent_id"
   has_many :reposts
-  has_many :comments
   has_many :likes
   has_one_attached :image
   default_scope -> { order(created_at: :desc) }
@@ -29,6 +28,16 @@ class Micropost < ApplicationRecord
                   WHERE micropost_id = :micropost_id"
     User.where("id IN (#{following_ids})
                 AND id IN (#{repost_ids})", user_id: user.id, micropost_id: id)
+  end
+
+  # Returns quotes
+  def quotes
+    children.where(relationship_type: 0)
+  end
+
+  # Returns comments
+  def comments
+    children.where(relationship_type: 1)
   end
 
   # Returns total number of quotes and reposts

@@ -1,0 +1,22 @@
+<% provide(:title, 'All microposts') %>
+<h1><%= t("all_microposts") %></h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(url: microposts_path, method: :get, local: true) do |f| %>
+
+      <%= f.label :search_term, t("search_microposts") %>
+      <%= f.text_field :search_term, class: 'form-control' %>
+
+      <%= f.submit t("Search"), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<%= will_paginate %>
+
+<ol class="microposts">
+  <%= render @microposts, dont_show_who_reposted: true %>
+</ol>
+
+<%= will_paginate %>

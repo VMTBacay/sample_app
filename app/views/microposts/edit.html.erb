@@ -1,6 +1,6 @@
 <% provide(:title, 'Edit micropost') %>
 
-<h3>Edit micropost</h3>
+<h3><%= t("edit_micropost") %></h3>
 <% unless @micropost.parent.nil? %>
   <div class="microposts">
     Parent micropost:<br>
@@ -12,14 +12,14 @@
 <%= form_with(model: @micropost, local: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+    <%= f.text_area :content, placeholder: t("new_micropost") %>
   </div>
 
   <%= image_tag @micropost.image.attached? ? @micropost.image : '', id: 'img_prev' %>
   <span class="image">
     <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
   </span>
-  <%= f.submit "Update", class: "btn btn-primary" %>
+  <%= f.submit t("Save"), class: "btn btn-primary" %>
 <% end %>
 
 <%= javascript_pack_tag 'image_size_check' %>

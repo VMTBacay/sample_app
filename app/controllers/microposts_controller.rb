@@ -2,11 +2,15 @@ class MicropostsController < ApplicationController
   before_action :logged_in_user, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
+  def index
+    @microposts = Micropost.where(Micropost.arel_table[:content].matches("%#{params[:search_term]}%")).paginate(page: params[:page])
+  end
+
   def show
     @micropost = Micropost.where(id: params[:id]).first
     if @micropost
-      @comment = @micropost.comments.build
-      @comments = @micropost.comments.paginate(page: params[:page])
+      @comment = @micropost.children.build
+      @comments = @micropost.children.where(relationship_type: 1).paginate(page: params[:page])
     else
       redirect_to root_url
     end
@@ -20,8 +24,13 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     @micropost.image.attach(params[:micropost][:image])
     if @micropost.save
-      flash[:success] = "Micropost created!"
-      redirect_to root_url
+      if @micropost.relationship_type == 1
+        flash[:success] = "Comment created!"
+        redirect_to @micropost.parent
+      else
+        flash[:success] = "Micropost created!"
+        redirect_to root_url
+      end
     else
       @feed_items = current_user.feed.paginate(page: params[:page])
       render 'static_pages/home'
@@ -52,7 +61,7 @@ class MicropostsController < ApplicationController
   private
 
   def micropost_params
-    params.require(:micropost).permit(:content, :image, :parent_id)
+    params.require(:micropost).permit(:content, :image, :parent_id, :relationship_type)
   end
 
   def correct_user

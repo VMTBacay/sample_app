@@ -39,4 +39,5 @@ followers.each { |follower| follower.follow(user) }
 other_user = User.second
 for i in 1..10
   user.microposts[i].update_attribute(:parent_id, other_user.microposts[i].id)
+  user.microposts[i].update_attribute(:relationship_type, 1)
 end
